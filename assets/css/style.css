@@ -518,6 +518,15 @@ footer div a {
   color: var(--light-mode);
 }
 
+.container-list div section.text p {
+  padding: 0 20px;
+  text-align: justify;
+}
+
+.container-list div section.text p.text-align-center {
+  text-align: center;
+}
+
 /* dark mode exceptions */
 
 html[mode="dark"] footer a {
@@ -527,6 +536,7 @@ html[mode="dark"] footer a {
 html[mode="dark"] .container-list div section span,
 html[mode="dark"] .container-list div .sesion form li label,
 html[mode="dark"] .container-list div section.text p,
+html[mode="dark"] .container-list div section.text div label,
 html[mode="dark"] .container-list div .sesion form li p {
   color: #646464;
 }
