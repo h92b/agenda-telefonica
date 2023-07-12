@@ -1,0 +1,725 @@
+/*
+ * estilo general
+*/
+:root {
+  --black: #000;
+  --dark-mode: #080808;
+  --gray-light: #a9a9a9;
+  --white: #fff;
+  --light-mode: #f1f1f1;
+  --cyan: #369797;
+  --cyan-2: #256a6a;
+  --black-transparent: rgba(0, 0, 0, 0.2);
+  --black-transparent-modal: rgba(0, 0, 0, 0.7);
+  --link-visited: #073232;
+  --link-visited-dark-mode: #1c9797;
+  --text-dark-mode: #333;
+}
+
+::placeholder {
+  transition: 0.5s;
+}
+
+::-webkit-scrollbar {
+  background-color: var(--light-mode);
+  width: 8px;
+}
+
+::-webkit-inner-spin-button {
+  background-color: var(--white);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--cyan-2);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--cyan);
+}
+
+input:-internal-autofill-selected {
+  appearance: inherit;
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+* {
+  border-collapse: collapse;
+}
+
+html {
+  transition: 2s cubic-bezier(0.075, 0.82, 0.165, 1) 0.51s;
+}
+
+html[mode="dark"] {
+  --light-mode: #080808;
+  --dark-mode: #fff;
+  --gray-light: #000;
+  --link-visited: var(--link-visited-dark-mode);
+  --text-dark-mode: #9d9d9d;
+}
+
+html {
+  background-color: var(--dark-mode);
+}
+
+body {
+  margin: 0 auto;
+  height: 100vh;
+  width: 500px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 0.036rem;
+}
+
+main {
+  height: 92vh;
+  position: relative;
+  transition: 1s;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+/*
+ * fin estilo general
+*/
+main section.menu {
+  align-items: center;
+  background-color: var(--cyan-2);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3em;
+  text-align: end;
+}
+
+#inp-modal-new-contact-1 {
+  left: 0px;
+}
+
+#inp-modal-new-contact-1:is(:checked)+.modal #inp-modal-new-contact-2,
+#inp-modal-new-contact-1+.modal #inp-modal-new-contact-2:is(:checked) {
+  background-color: var(--black-transparent-modal);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 2;
+}
+
+#inp-modal-new-contact-1:is(:checked)+.modal #inp-modal-new-contact-2:is(:checked) {
+  background-color: inherit;
+  position: inherit;
+  top: inherit;
+  right: inherit;
+  bottom: inherit;
+  left: inherit;
+  z-index: inherit;
+}
+
+#inp-modal-new-contact-1:is(:checked)+.modal #inp-modal-new-contact-2:is(:checked)+.container,
+#inp-modal-new-contact-1+.modal #inp-modal-new-contact-2+.container {
+  display: none;
+}
+
+#inp-modal-new-contact-1:is(:checked)+.modal #inp-modal-new-contact-2+.container,
+#inp-modal-new-contact-1+.modal #inp-modal-new-contact-2:is(:checked)+.container {
+  display: flex;
+}
+
+.container {
+  align-items: center;
+  bottom: calc(50% - 120px);
+  height: 240px;
+  justify-content: center;
+  right: calc(50% - 130px);
+  position: absolute;
+  width: 260px;
+  z-index: 2;
+}
+
+main section.menu button {
+  background-color: var(--cyan);
+  border: 2px solid var(--cyan);
+  border-radius: 4px;
+  position: relative;
+}
+
+.inp-menu,
+#inp-modal-new-contact-1,
+#inp-menu {
+  width: 40px;
+  height: 40px;
+}
+
+#inp-modal-new-contact-1,
+#inp-modal-new-contact-2,
+#inp-menu {
+  appearance: initial;
+  position: absolute;
+}
+
+#inp-menu {
+  top: -5px;
+  left: -6px;
+  z-index: 1;
+}
+
+main section.menu span {
+  border-top: 2px solid var(--light-mode);
+  display: block;
+  margin-bottom: 0.4rem;
+  position: relative;
+  top: 3px;
+}
+
+main section.menu input:hover {
+  background-color: var(--black-transparent);
+}
+
+main section.menu input~.menu-header-toggle {
+  visibility: hidden;
+}
+
+main section.menu input:checked~.menu-header-toggle {
+  visibility: visible !important;
+  -webkit-animation: tada 0.5s linear;
+  animation: tada 0.5s linear;
+  transition: 1s;
+  z-index: 1;
+}
+
+main section.menu input+span,
+main section.menu input+span+span+span {
+  rotate: 0deg;
+  transition: 0.5s;
+}
+
+main section.menu input:checked+span {
+  rotate: 50deg;
+  transition: 0.5s;
+  top: 9px;
+}
+
+main section.menu input:checked+span+span {
+  border: 0px solid var(--cyan-2);
+  transition: 0.5s;
+}
+
+main section.menu input:checked+span+span+span {
+  rotate: -46deg;
+  transition: 0.5s;
+  top: 0px;
+}
+
+.menu-header-toggle {
+  border-radius: 4px;
+  padding: 2em 1.4em;
+  position: absolute;
+  text-align: start;
+  top: 40px;
+  right: -2px;
+  width: max-content;
+}
+
+.menu-header-toggle li:hover {
+  position: relative;
+  left: 6px;
+}
+
+.menu-header-toggle li a {
+  display: block;
+  padding: 0.9em;
+  color: var(--link-visited);
+  cursor: pointer;
+}
+
+/* 
+ * search
+*/
+.search.v-hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.search {
+  visibility: visible;
+  opacity: 1;
+  transition: 1s;
+}
+
+.search div {
+  display: flex;
+  justify-content: space-around;
+}
+
+.search div input {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid transparent;
+  outline: none;
+  transition: 1s;
+}
+
+.search input:hover::placeholder {
+  color: var(--text-dark-mode);
+}
+
+.search div i {
+  padding: 0.5em;
+  color: #a9a9a9;
+  transition: 1s;
+}
+
+/* 
+ * fin search
+*/
+/* container-list */
+.container-list {
+  border-top: 0px;
+  position: absolute;
+  bottom: 0;
+  top: 84px;
+  width: calc(100% - 2px);
+}
+
+.container-list div:first-child {
+  overflow-x: auto;
+  margin-right: 0.24rem;
+  height: 100%;
+}
+
+.container-list>div:first-child>span,
+.top-scroll {
+  align-items: center;
+  background: var(--cyan);
+  border: 1px solid var(--cyan-2);
+  border-radius: 50%;
+  color: #f1f1f1;
+  display: flex;
+  font: italic bold 1rem/20px 'sans-serif';
+  height: 40px;
+  justify-content: center;
+  margin: 6px;
+  width: 40px;
+}
+
+/*  */
+.container-list div .sesion {
+  text-align: center;
+}
+
+.container-list div .sesion form {
+  margin: auto;
+  width: 300px;
+}
+
+.container-list div .sesion form li {
+  padding: 0.51em;
+}
+
+.container-list div .sesion form li:first-child,
+.container-list div .sesion form li:nth-of-type(3) {
+  text-align: end;
+}
+
+.container-list div .sesion form li:nth-of-type(2),
+.container-list div .sesion form li:nth-of-type(4) {
+  text-align: start;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-list div .sesion form li a,
+.container-list div .sesion form li p {
+  font-size: 0.9rem;
+}
+
+.container-list div .sesion form li label {
+  display: block;
+  font-size: 0.9rem;
+  padding: 0.41em 0;
+}
+
+.container-list div .sesion form li input,
+.new-contact input {
+  background-color: transparent;
+  display: block;
+  padding: 0.61em;
+  box-shadow: var(--black-transparent) 0px 0px 8px 0px;
+}
+
+.container-list div .sesion form li input:active,
+.container-list div .sesion form li input:focus {
+  outline: var(--cyan) solid thin;
+}
+
+.container-list div .sesion form button {
+  background-color: var(--cyan);
+  border: var(--cyan-2);
+  padding: 0.81em 3.4em;
+}
+
+.container-list div .sesion form button:hover {
+  background-color: var(--cyan-2);
+  transition: 0.51s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.container-list div .sesion form button:active {
+  background: radial-gradient(var(--cyan), var(--cyan-2));
+}
+
+/*  */
+.container-list div .contacts,
+.container-list div .sesion {
+  padding: 1rem 1.4rem;
+  transition: 1s;
+}
+
+.container-list div .contacts:hover {
+  background-color: var(--black-transparent);
+}
+
+.container-list div .contacts h2,
+.container-list div .sesion h2 {
+  margin-top: 0.5rem;
+}
+
+.container-list div .contacts h3 {
+  margin-block-start: inherit;
+  margin-block-end: 0.5rem;
+  color: var(--text-dark-mode);
+}
+
+.validate.active {
+  font-size: 0.9rem;
+  color: #e10505 !important;
+  padding-left: 0.6rem;
+}
+
+.container-list section[aria-letter="vacio"] {
+  /* background: url(../img/undraw_note_list_re_r4u9.svg) left center no-repeat;
+  background-size: calc(100%); */
+  height: 100%;
+  position: relative;
+}
+
+/* fin container-list */
+
+/* 
+ * footer
+*/
+footer {
+  align-items: center;
+  background-color: var(--cyan-2);
+  display: flex;
+  height: 8vh;
+}
+
+footer div {
+  margin: 0 0.5em;
+}
+
+footer div span {
+  margin: 0 0.2em 0 0;
+}
+
+footer div a i {
+  position: relative;
+  top: 1px;
+}
+
+/* 
+ * fin footer
+*/
+
+.d-block {
+  display: block;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-none {
+  display: none;
+}
+
+/* light mode */
+
+/* fin light mode */
+
+.container-list {
+  border-right: var(--gray-light) solid 1px;
+  border-bottom: var(--gray-light) solid 1px;
+  border-left: var(--gray-light) solid 1px;
+}
+
+.container-list div .sesion form li a {
+  font-size: 0.9rem;
+}
+
+main,
+.menu-header-toggle {
+  background-color: var(--light-mode);
+}
+
+.menu-header-toggle,
+.search div,
+.container-list div .sesion form li input,
+.new-contact input {
+  border: 1px solid var(--gray-light);
+}
+
+.search div input,
+.container-list div .contacts span,
+.container-list div .sesion span,
+.container-list div .sesion form li label {
+  color: var(--dark-mode);
+}
+
+.container-list div section h2,
+.container-list div .sesion form li input,
+.search div input,
+.new-contact input {
+  color: var(--text-dark-mode);
+}
+
+#signup input:hover,
+#login input:hover,
+#recover input:hover {
+  border: 1px solid var(--cyan);
+}
+
+#signup input:hover::placeholder,
+#login input:hover::placeholder,
+#recover input:hover::placeholder {
+  color: var(--text-dark-mode);
+}
+
+main section.menu,
+.bx-plus,
+.container-list div .sesion form button,
+footer div,
+footer div a {
+  color: var(--light-mode);
+}
+
+/* dark mode exceptions */
+
+html[mode="dark"] footer a {
+  color: #073232;
+}
+
+html[mode="dark"] .container-list div section span,
+html[mode="dark"] .container-list div .sesion form li label,
+html[mode="dark"] .container-list div section.text p,
+html[mode="dark"] .container-list div .sesion form li p {
+  color: #646464;
+}
+
+html[mode="dark"] #pantalla {
+  fill: var(--black);
+  transition: 1s;
+}
+
+/* fin dark mode */
+
+.new-contact {
+  text-align: left;
+}
+
+.new-contact h2 {
+  color: #f7f7f7;
+}
+
+.new-contact label {
+  background-color: var(--cyan-2);
+  position: relative;
+  top: 6px;
+  color: var(--white);
+  border: 1px solid var(--cyan);
+  border-radius: 10px;
+  font-size: 0.76rem;
+  padding: 0.1rem 0.8rem;
+  left: -8px;
+  letter-spacing: 0.08em;
+  display: flex;
+  width: calc(26%);
+  transition: 1s;
+}
+
+.new-contact input {
+  border-bottom-left-radius: 10px;
+  margin: 0.3rem 0 0.6rem;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--white);
+  border-left: 1px solid var(--white);
+  outline: none;
+  box-shadow: none;
+  transition: 1s;
+}
+
+.new-contact input::placeholder {
+  color: var(--white);
+}
+
+.new-contact button {
+  background-color: var(--cyan-2) !important;
+  border: 1px solid var(--cyan) !important;
+  padding: 0.5rem 1rem;
+  transition: 1s;
+  color: var(--white);
+}
+
+.new-contact button:nth-of-type(2) {
+  margin: auto;
+}
+
+.new-contact li {
+  margin-bottom: 16px;
+}
+
+.new-contact li:hover>label {
+  background-color: var(--v);
+  left: 0;
+  top: 0;
+  transition: 0.5s;
+}
+
+.new-contact li:hover>input {
+  background-color: var(--light-mode);
+  border-bottom-left-radius: var(--v);
+  transition: 1s;
+}
+
+.new-contact input:hover {
+  background-color: var(--light-mode) !important;
+  transition: 1s;
+}
+
+.new-contact input:hover::placeholder {
+  color: var(--text-dark-mode);
+}
+
+.top-scroll {
+  bottom: 74px;
+  cursor: pointer;
+  left: 94%;
+  margin: 0 !important;
+  opacity: 0;
+  position: relative;
+  visibility: hidden;
+}
+
+.top-scroll.active {
+  visibility: visible;
+  opacity: 1;
+  transition: 0.5s cubic-bezier(0.55, 0.06, 0.68, 0.19);
+}
+
+.recicle::before {
+  content: "\ebac";
+  font: normal normal normal 1.4rem/1.6rem 'boxicons' !important;
+}
+
+.recicle::after {
+  align-items: center;
+  background: var(--link-visited);
+  border-radius: 50%;
+  content: "0";
+  display: flex;
+  font: normal normal normal 0.6rem/16px 'boxicons' !important;
+  height: 20px;
+  justify-content: center;
+  left: 30px;
+  position: absolute;
+  top: -10px;
+  width: 20px;
+}
+
+.recicle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--cyan-2);
+  color: var(--white);
+  height: 40px;
+  left: 100%;
+  margin: 0 !important;
+  opacity: 1;
+  position: relative;
+  top: 64%;
+  width: 40px;
+}
+
+.letter.active {
+  opacity: 1;
+  height: 40px !important;
+  transition: 0.5s;
+  display: flex !important;
+}
+
+.letter:not(.active) {
+  height: 0 !important;
+  opacity: 0;
+  transition: 0.5s;
+  display: none !important;
+}
+
+.receptor-trash {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0px;
+  background: rgba(0, 0, 0, 0.14);
+  border: 6px dashed var(--cyan);
+  margin: 0 14px;
+  height: 0;
+  width: calc(100% - 44px);
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s cubic-bezier(0.81, -1, 1, -0.11);
+}
+
+.receptor-trash::before {
+  visibility: hidden;
+  content: "\ebac Suelte aqui";
+  color: var(--cyan-2);
+  transition: 0.3s;
+}
+
+.receptor-trash.active::before {
+  visibility: visible;
+  font: normal normal normal 0.9rem/1rem 'boxicons' !important;
+}
+
+.receptor-trash.enter::before {
+  visibility: visible;
+  color: rgb(16, 168, 29);
+  font: normal normal normal 1.4rem/1.6rem 'boxicons' !important;
+  transition: 0.3s cubic-bezier(0.81, -1, 1, -0.11);
+}
+
+.receptor-trash.active{
+  visibility: visible;
+  height: 100px;
+}
+
+.receptor-trash.enter{
+  border: 6px dashed rgb(16, 168, 29);
+  transition: 0.5s;
+}
